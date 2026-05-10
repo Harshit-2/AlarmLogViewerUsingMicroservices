@@ -15,7 +15,8 @@ namespace UserLibrary.Models
         {
         }
 
-        public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Room> Rooms { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace TemperatureLibrary.Models
+namespace RoomsLibrary.Models
 {
-    [Table("Temperatures")]
+    [Table("Tempratures")]
     public class Temperature
     {
         [Key]
@@ -15,13 +15,8 @@ namespace TemperatureLibrary.Models
 
         [Column(TypeName = "VARCHAR(6)")]
         [ForeignKey("RoomNavigation")]
-        public string RoomId { get; set; } // Reference to Room
+        public string RoomId { get; set; }
 
         public virtual Room? RoomNavigation { get; set; }
-
-        public decimal TemperatureValue { get; set; }
-
-        [Column(TypeName = "VARCHAR(30)")]
-        public string RecordedAt { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 <Solution>
   <Project Path="AlarmLogViewerAPI/AlertViewerAPI.csproj" />
   <Project Path="AlertsLibrary/AlertsLibrary.csproj" />
+  <Project Path="AuthenticationWebApi/AuthenticationWebApi.csproj" Id="eae46490-8664-444e-9a74-154c7c8b96e3" />
   <Project Path="RoomsLibrary/RoomsLibrary.csproj" />
   <Project Path="RoomViewerAPI/RoomViewerAPI.csproj" Id="260cc02a-7be0-43b8-a537-8caa67d35097" />
   <Project Path="SharedContracts/SharedContracts.csproj" />

@@ -24,7 +24,7 @@ namespace AlertsLibrary.Migrations
             modelBuilder.Entity("AlertsLibrary.Models.Alert", b =>
                 {
                     b.Property<string>("AlertId")
-                        .HasColumnType("CHAR(6)");
+                        .HasColumnType("VARCHAR(6)");
 
                     b.Property<string>("AlertTime")
                         .IsRequired()
@@ -32,7 +32,7 @@ namespace AlertsLibrary.Migrations
 
                     b.Property<string>("RoomId")
                         .IsRequired()
-                        .HasColumnType("CHAR(6)");
+                        .HasColumnType("VARCHAR(6)");
 
                     b.Property<string>("Status")
                         .IsRequired()
@@ -43,7 +43,35 @@ namespace AlertsLibrary.Migrations
 
                     b.HasKey("AlertId");
 
+                    b.HasIndex("RoomId");
+
                     b.ToTable("Alerts");
+                });
+
+            modelBuilder.Entity("AlertsLibrary.Models.Room", b =>
+                {
+                    b.Property<string>("RoomId")
+                        .HasColumnType("VARCHAR(6)");
+
+                    b.HasKey("RoomId");
+
+                    b.ToTable("Rooms");
+                });
+
+            modelBuilder.Entity("AlertsLibrary.Models.Alert", b =>
+                {
+                    b.HasOne("AlertsLibrary.Models.Room", "RoomNavigation")
+                        .WithMany("Alerts")
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("RoomNavigation");
+                });
+
+            modelBuilder.Entity("AlertsLibrary.Models.Room", b =>
+                {
+                    b.Navigation("Alerts");
                 });
 #pragma warning restore 612, 618
         }

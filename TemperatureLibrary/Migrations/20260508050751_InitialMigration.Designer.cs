@@ -11,7 +11,7 @@ using TemperatureLibrary.Models;
 namespace TemperatureLibrary.Migrations
 {
     [DbContext(typeof(TemperatureDbContext))]
-    [Migration("20260505041030_InitialMigration")]
+    [Migration("20260508050751_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -24,10 +24,20 @@ namespace TemperatureLibrary.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("TemperatureLibrary.Models.Room", b =>
+                {
+                    b.Property<string>("RoomId")
+                        .HasColumnType("VARCHAR(6)");
+
+                    b.HasKey("RoomId");
+
+                    b.ToTable("Rooms");
+                });
+
             modelBuilder.Entity("TemperatureLibrary.Models.Temperature", b =>
                 {
                     b.Property<string>("ReadingId")
-                        .HasColumnType("CHAR(6)");
+                        .HasColumnType("VARCHAR(6)");
 
                     b.Property<string>("RecordedAt")
                         .IsRequired()
@@ -35,14 +45,32 @@ namespace TemperatureLibrary.Migrations
 
                     b.Property<string>("RoomId")
                         .IsRequired()
-                        .HasColumnType("CHAR(6)");
+                        .HasColumnType("VARCHAR(6)");
 
                     b.Property<decimal>("TemperatureValue")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("ReadingId");
 
+                    b.HasIndex("RoomId");
+
                     b.ToTable("Temperatures");
+                });
+
+            modelBuilder.Entity("TemperatureLibrary.Models.Temperature", b =>
+                {
+                    b.HasOne("TemperatureLibrary.Models.Room", "RoomNavigation")
+                        .WithMany("Temperatures")
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("RoomNavigation");
+                });
+
+            modelBuilder.Entity("TemperatureLibrary.Models.Room", b =>
+                {
+                    b.Navigation("Temperatures");
                 });
 #pragma warning restore 612, 618
         }

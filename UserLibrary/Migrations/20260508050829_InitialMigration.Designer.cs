@@ -11,7 +11,7 @@ using UserLibrary.Models;
 namespace UserLibrary.Migrations
 {
     [DbContext(typeof(UserDbContext))]
-    [Migration("20260505041240_InitialMigration")]
+    [Migration("20260508050829_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -24,10 +24,26 @@ namespace UserLibrary.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("UserLibrary.Models.Room", b =>
+                {
+                    b.Property<string>("RoomId")
+                        .HasColumnType("VARCHAR(6)");
+
+                    b.Property<string>("CreateByUserId")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(6)");
+
+                    b.HasKey("RoomId");
+
+                    b.HasIndex("CreateByUserId");
+
+                    b.ToTable("Rooms");
+                });
+
             modelBuilder.Entity("UserLibrary.Models.User", b =>
                 {
                     b.Property<string>("UserId")
-                        .HasColumnType("CHAR(6)");
+                        .HasColumnType("VARCHAR(6)");
 
                     b.Property<string>("CreatedAt")
                         .IsRequired()
@@ -48,6 +64,22 @@ namespace UserLibrary.Migrations
                     b.HasKey("UserId");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("UserLibrary.Models.Room", b =>
+                {
+                    b.HasOne("UserLibrary.Models.User", "UserNavigation")
+                        .WithMany("Rooms")
+                        .HasForeignKey("CreateByUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("UserNavigation");
+                });
+
+            modelBuilder.Entity("UserLibrary.Models.User", b =>
+                {
+                    b.Navigation("Rooms");
                 });
 #pragma warning restore 612, 618
         }

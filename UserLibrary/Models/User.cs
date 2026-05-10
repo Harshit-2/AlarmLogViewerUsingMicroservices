@@ -10,7 +10,7 @@ namespace UserLibrary.Models
     public class User
     {
         [Key]
-        [Column(TypeName = "CHAR(6)")]
+        [Column(TypeName = "VARCHAR(6)")]
         public string UserId { get; set; }
 
         [Column(TypeName = "VARCHAR(30)")]
@@ -24,5 +24,7 @@ namespace UserLibrary.Models
 
         [Column(TypeName = "VARCHAR(30)")]
         public string CreatedAt { get; set; }
+
+        public virtual ICollection<Room> Rooms { get; set; } = new List<Room>();
     }
 }

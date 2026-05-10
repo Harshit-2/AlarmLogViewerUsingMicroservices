@@ -5,10 +5,16 @@ using System.Text;
 
 namespace RoomsLibrary.Models
 {
+    [Table("Alerts")]
     public class Alert
     {
-        [Column(TypeName = "CHAR(6)")]
+        [Column(TypeName = "VARCHAR(6)")]
+        public string AlertId { get; set; }
+        [Column(TypeName = "VARCHAR(6)")]
+        [ForeignKey("RoomNavigation")]
         public string RoomId { get; set; }
+
+        public virtual Room? RoomNavigation { get; set; }
 
     }
 }

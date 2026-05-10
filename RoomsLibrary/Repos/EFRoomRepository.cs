@@ -43,7 +43,7 @@ namespace RoomsLibrary.Repos
         public async Task<List<Room>> GetByCreatorAsync(string userId)
         {
             var rooms = await context.Rooms
-                .Where(r => r.CreatedBy == userId)
+                .Where(r => r.CreatedByUserId == userId)
                 .ToListAsync();
 
             if (rooms.Count == 0)
@@ -68,7 +68,7 @@ namespace RoomsLibrary.Repos
                 existingRoom.RoomName = room.RoomName;
                 existingRoom.MinTemp = room.MinTemp;
                 existingRoom.MaxTemp = room.MaxTemp;
-                existingRoom.CreatedBy = room.CreatedBy;
+                existingRoom.CreatedByUserId = room.CreatedByUserId;
                 existingRoom.CreatedAt = room.CreatedAt;
 
                 await context.SaveChangesAsync();

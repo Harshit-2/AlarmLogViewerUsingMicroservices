@@ -14,7 +14,7 @@ namespace TemperatureLibrary.Repos
         {
             try
             {
-                await context.Temperature.AddAsync(temperature);
+                await context.Temperatures.AddAsync(temperature);
                 await context.SaveChangesAsync();
             }
             catch (Exception ex)
@@ -27,7 +27,7 @@ namespace TemperatureLibrary.Repos
         {
             try
             {
-                var temp = await context.Temperature
+                var temp = await context.Temperatures
                     .FirstOrDefaultAsync(t => t.ReadingId == id);
 
                 if (temp == null)
@@ -47,7 +47,7 @@ namespace TemperatureLibrary.Repos
         {
             try
             {
-                var temp = await context.Temperature
+                var temp = await context.Temperatures
                     .FirstOrDefaultAsync(t => t.RoomId == roomId);
 
                 if (temp == null)
@@ -67,7 +67,7 @@ namespace TemperatureLibrary.Repos
         {
             try
             {
-                var temp = await context.Temperature
+                var temp = await context.Temperatures
                     .Where(t => t.RoomId == roomId)
                     .OrderByDescending(t => t.RecordedAt)
                     .FirstOrDefaultAsync();
@@ -88,7 +88,7 @@ namespace TemperatureLibrary.Repos
         {
             try
             {
-                var existingTemp = await context.Temperature
+                var existingTemp = await context.Temperatures
                     .FirstOrDefaultAsync(t => t.ReadingId == id);
 
                 if (existingTemp == null)
@@ -110,13 +110,13 @@ namespace TemperatureLibrary.Repos
         {
             try
             {
-                var temp = await context.Temperature
+                var temp = await context.Temperatures
                     .FirstOrDefaultAsync(t => t.ReadingId == id);
                 if (temp == null)
                 {
                     throw new TemperatureException("Temperature record not found");
                 }
-                context.Temperature.Remove(temp);
+                context.Temperatures.Remove(temp);
                 await context.SaveChangesAsync();
             }
             catch (Exception ex)
@@ -127,7 +127,7 @@ namespace TemperatureLibrary.Repos
 
         public async Task<List<Temperature>> GetAllTemperaturesAsync()
         {
-            List<Temperature> temperatures = await context.Temperature.ToListAsync();
+            List<Temperature> temperatures = await context.Temperatures.ToListAsync();
             return temperatures;
 
         }

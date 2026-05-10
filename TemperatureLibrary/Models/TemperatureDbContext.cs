@@ -15,7 +15,8 @@ namespace TemperatureLibrary.Models
         {
         }
 
-        public virtual DbSet<Temperature> Temperature { get; set; }
+        public virtual DbSet<Temperature> Temperatures { get; set; }
+        public virtual DbSet<Room> Rooms { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

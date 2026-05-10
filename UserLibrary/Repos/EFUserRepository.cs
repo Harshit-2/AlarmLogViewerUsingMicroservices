@@ -13,7 +13,7 @@ namespace UserLibrary.Repos
         {
             try
             {
-                await context.User.AddAsync(user);
+                await context.Users.AddAsync(user);
                 await context.SaveChangesAsync();
             }
             catch (Exception ex) {
@@ -26,7 +26,7 @@ namespace UserLibrary.Repos
             var userToDel = await GetByIdAsync(id);
             try
             {
-                context.User.Remove(userToDel);
+                context.Users.Remove(userToDel);
                 await context.SaveChangesAsync();
             }
             catch (Exception ex)
@@ -37,13 +37,13 @@ namespace UserLibrary.Repos
 
         public async Task<List<User>> GetAllAsync()
         {
-            List<User> users = await context.User.ToListAsync();
+            List<User> users = await context.Users.ToListAsync();
             return users;
         }
 
         public async Task<User> GetByIdAsync(string id)
         {
-            var user = await context.User.FirstOrDefaultAsync(u => u.UserId == id);
+            var user = await context.Users.FirstOrDefaultAsync(u => u.UserId == id);
             if (user == null)
             {
                 throw new UserException($"No user found with id {id}");
@@ -53,7 +53,7 @@ namespace UserLibrary.Repos
 
         public async Task<User> GetByCredentialsAsync(string username, string password)
         {
-            var user = await context.User.FirstOrDefaultAsync(u => u.Username == username && u.Password == password);
+            var user = await context.Users.FirstOrDefaultAsync(u => u.Username == username && u.Password == password);
             if (user == null)
             {
                 throw new UserException("Invalid username or password");
@@ -65,7 +65,7 @@ namespace UserLibrary.Repos
         {
             try
             {
-                var existingUser = await context.User.FirstOrDefaultAsync(u => u.UserId == id);
+                var existingUser = await context.Users.FirstOrDefaultAsync(u => u.UserId == id);
                 if (existingUser == null)
                 {
                     throw new UserException($"No user found with id {id}");

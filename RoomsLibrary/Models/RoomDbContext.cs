@@ -16,6 +16,9 @@ namespace RoomsLibrary.Models
         }
 
         public virtual DbSet<Room> Rooms { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Alert> Alerts { get; set; }
+        public virtual DbSet<Temperature> Temperatures { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

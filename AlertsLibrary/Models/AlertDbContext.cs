@@ -16,6 +16,7 @@ namespace AlertsLibrary.Models
         }
 
         public virtual DbSet<Alert> Alerts { get; set; }
+        public virtual DbSet<Room> Rooms { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

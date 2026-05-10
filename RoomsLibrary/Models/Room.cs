@@ -10,7 +10,7 @@ namespace RoomsLibrary.Models
     public class Room
     {
         [Key]
-        [Column(TypeName = "CHAR(6)")]
+        [Column(TypeName = "VARCHAR(6)")]
         public string RoomId { get; set; }
 
         [Column(TypeName = "VARCHAR(30)")]
@@ -19,10 +19,15 @@ namespace RoomsLibrary.Models
         public int MinTemp { get; set; }
         public int MaxTemp { get; set; }
 
-        [Column(TypeName = "CHAR(6)")]
-        public string CreatedBy { get; set; } // UserId reference
+        [Column(TypeName = "VARCHAR(6)")]
+        [ForeignKey("UserNavigation")]
+        public string CreatedByUserId { get; set; } // UserId reference
 
         [Column(TypeName = "VARCHAR(30)")]
         public string CreatedAt { get; set; }
+
+        public virtual User? userNavigation { get; set; }
+        public virtual ICollection<Alert> Alerts { get; set; } = new List<Alert>();
+        public virtual ICollection<Temperature> Temperatures { get; set; } = new List<Temperature>();
     }
 }
