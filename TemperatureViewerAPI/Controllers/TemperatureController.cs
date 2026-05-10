@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TemperatureLibrary.Models;
 using TemperatureLibrary.Repos;
@@ -6,6 +7,7 @@ namespace TemperatureWebApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class TemperatureController : ControllerBase
     {
         private readonly ITemperatureRepository _repository;

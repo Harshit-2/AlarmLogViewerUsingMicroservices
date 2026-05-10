@@ -1,5 +1,6 @@
 using AlertsLibrary.Models;
 using AlertsLibrary.Repos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using UserLibrary.Repos;
 
@@ -7,6 +8,7 @@ namespace AlarmLogViewerAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class AlertController : ControllerBase
     {
         private readonly IAlertRepository alertRepo;
