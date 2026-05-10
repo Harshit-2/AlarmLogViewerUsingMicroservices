@@ -11,7 +11,7 @@ using TemperatureLibrary.Models;
 namespace TemperatureLibrary.Migrations
 {
     [DbContext(typeof(TemperatureDbContext))]
-    [Migration("20260508050751_InitialMigration")]
+    [Migration("20260510195536_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />

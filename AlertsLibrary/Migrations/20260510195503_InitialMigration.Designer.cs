@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AlertsLibrary.Migrations
 {
     [DbContext(typeof(AlertDbContext))]
-    [Migration("20260508041937_InitialMigration")]
+    [Migration("20260510195503_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />

@@ -30,17 +30,17 @@ namespace RoomsLibrary.Migrations
                     MinTemp = table.Column<int>(type: "int", nullable: false),
                     MaxTemp = table.Column<int>(type: "int", nullable: false),
                     CreatedByUserId = table.Column<string>(type: "VARCHAR(6)", nullable: false),
-                    CreatedAt = table.Column<string>(type: "VARCHAR(30)", nullable: false),
-                    userNavigationUserId = table.Column<string>(type: "VARCHAR(6)", nullable: true)
+                    CreatedAt = table.Column<string>(type: "VARCHAR(30)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Rooms", x => x.RoomId);
                     table.ForeignKey(
-                        name: "FK_Rooms_Users_userNavigationUserId",
-                        column: x => x.userNavigationUserId,
+                        name: "FK_Rooms_Users_CreatedByUserId",
+                        column: x => x.CreatedByUserId,
                         principalTable: "Users",
-                        principalColumn: "UserId");
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -85,9 +85,9 @@ namespace RoomsLibrary.Migrations
                 column: "RoomId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Rooms_userNavigationUserId",
+                name: "IX_Rooms_CreatedByUserId",
                 table: "Rooms",
-                column: "userNavigationUserId");
+                column: "CreatedByUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tempratures_RoomId",

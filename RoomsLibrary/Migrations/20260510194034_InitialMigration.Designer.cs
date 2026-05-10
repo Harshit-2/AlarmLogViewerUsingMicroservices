@@ -11,7 +11,7 @@ using RoomsLibrary.Models;
 namespace RoomsLibrary.Migrations
 {
     [DbContext(typeof(RoomDbContext))]
-    [Migration("20260508050649_InitialMigration")]
+    [Migration("20260510194034_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -63,12 +63,9 @@ namespace RoomsLibrary.Migrations
                         .IsRequired()
                         .HasColumnType("VARCHAR(30)");
 
-                    b.Property<string>("userNavigationUserId")
-                        .HasColumnType("VARCHAR(6)");
-
                     b.HasKey("RoomId");
 
-                    b.HasIndex("userNavigationUserId");
+                    b.HasIndex("CreatedByUserId");
 
                     b.ToTable("Rooms");
                 });
@@ -114,7 +111,9 @@ namespace RoomsLibrary.Migrations
                 {
                     b.HasOne("RoomsLibrary.Models.User", "userNavigation")
                         .WithMany("Rooms")
-                        .HasForeignKey("userNavigationUserId");
+                        .HasForeignKey("CreatedByUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("userNavigation");
                 });
