@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -132,5 +132,17 @@ namespace TemperatureLibrary.Repos
 
         }
 
+        public async Task AddRoomStubAsync(Room room)
+        {
+            try
+            {
+                await context.Rooms.AddAsync(room);
+                await context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new TemperatureException(ex.Message);
+            }
+        }
     }
 }

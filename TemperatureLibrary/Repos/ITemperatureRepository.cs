@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using TemperatureLibrary.Models;
@@ -14,5 +14,6 @@ namespace TemperatureLibrary.Repos
         Task AddAsync(Temperature temperature);
         Task UpdateAsync(string id, Temperature temperature);
         Task DeleteAsync(string id);
+        Task AddRoomStubAsync(Room room);
     }
 }

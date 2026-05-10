@@ -1,4 +1,4 @@
-﻿using AlertsLibrary.Models;
+using AlertsLibrary.Models;
 using AlertsLibrary.Repos;
 using Microsoft.AspNetCore.Mvc;
 using UserLibrary.Repos;
@@ -117,6 +117,20 @@ namespace AlarmLogViewerAPI.Controllers
             catch (UserException ex)
             {
                 return NotFound(ex.Message);
+            }
+        }
+
+        [HttpPost("Room")]
+        public async Task<ActionResult> InsertRoomStub([FromBody] Room room)
+        {
+            try
+            {
+                await alertRepo.AddRoomStubAsync(room);
+                return Ok();
+            }
+            catch (AlertException ex)
+            {
+                return BadRequest(ex.Message);
             }
         }
     }

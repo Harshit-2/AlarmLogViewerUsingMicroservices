@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RoomsLibrary.Models;
 using RoomsLibrary.Repos;
@@ -66,6 +66,13 @@ namespace RoomViewerAPI.Controllers
             try
             {
                 await roomRepo.AddAsync(room);
+                
+                HttpClient tempHttp = new HttpClient() { BaseAddress = new Uri("http://localhost:5155/api/Temperature/") };
+                await tempHttp.PostAsJsonAsync("Room", new { RoomId = room.RoomId });
+
+                HttpClient alertHttp = new HttpClient() { BaseAddress = new Uri("http://localhost:5179/api/Alert/") };
+                await alertHttp.PostAsJsonAsync("Room", new { RoomId = room.RoomId });
+
                 return Created($"api/rooms/{room.RoomId}", room);
             }
 
@@ -105,6 +112,20 @@ namespace RoomViewerAPI.Controllers
             catch (RoomException ex)
             {
                 return NotFound(ex.Message);
+            }
+        }
+
+        [HttpPost("User")]
+        public async Task<ActionResult> InsertUserStub([FromBody] User user)
+        {
+            try
+            {
+                await roomRepo.AddUserStubAsync(user);
+                return Ok();
+            }
+            catch (RoomException ex)
+            {
+                return BadRequest(ex.Message);
             }
         }
     }

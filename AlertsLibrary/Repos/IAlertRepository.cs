@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using AlertsLibrary.Models;
@@ -14,5 +14,6 @@ namespace AlertsLibrary.Repos
         Task AddAsync(Alert alert);
         Task UpdateAlertAsync(string id, Alert alert);
         Task DeleteAsync(string id);
+        Task AddRoomStubAsync(Room room);
     }
 }

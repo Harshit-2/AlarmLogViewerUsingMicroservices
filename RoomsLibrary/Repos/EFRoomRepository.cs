@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
@@ -85,6 +85,19 @@ namespace RoomsLibrary.Repos
             try
             {
                 context.Rooms.Remove(roomToDel);
+                await context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new RoomException(ex.Message);
+            }
+        }
+
+        public async Task AddUserStubAsync(User user)
+        {
+            try
+            {
+                await context.Users.AddAsync(user);
                 await context.SaveChangesAsync();
             }
             catch (Exception ex)

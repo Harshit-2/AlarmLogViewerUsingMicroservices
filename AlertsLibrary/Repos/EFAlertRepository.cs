@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using AlertsLibrary.Models;
@@ -102,5 +102,17 @@ namespace AlertsLibrary.Repos
             }
         }
 
+        public async Task AddRoomStubAsync(Room room)
+        {
+            try
+            {
+                await context.Rooms.AddAsync(room);
+                await context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new AlertException(ex.Message);
+            }
+        }
     }
 }

@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using TemperatureLibrary.Models;
 using TemperatureLibrary.Repos;
 
@@ -62,6 +62,20 @@ namespace TemperatureWebApi.Controllers
         {
             await _repository.DeleteAsync(id);
             return NoContent();
+        }
+
+        [HttpPost("Room")]
+        public async Task<IActionResult> InsertRoomStub([FromBody] Room room)
+        {
+            try
+            {
+                await _repository.AddRoomStubAsync(room);
+                return Ok();
+            }
+            catch (TemperatureLibrary.Repos.TemperatureException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

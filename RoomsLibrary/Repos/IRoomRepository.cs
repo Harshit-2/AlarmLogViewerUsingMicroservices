@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using RoomsLibrary.Models;
@@ -13,5 +13,6 @@ namespace RoomsLibrary.Repos
         Task AddAsync(Room room);
         Task UpdateAsync(string id, Room room);
         Task DeleteAsync(string id);
+        Task AddUserStubAsync(User user);
     }
 }
