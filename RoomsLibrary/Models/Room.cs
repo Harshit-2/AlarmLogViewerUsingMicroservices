@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -20,7 +20,7 @@ namespace RoomsLibrary.Models
         public int MaxTemp { get; set; }
 
         [Column(TypeName = "VARCHAR(6)")]
-        [ForeignKey("UserNavigation")]
+        [ForeignKey("userNavigation")]
         public string CreatedByUserId { get; set; } // UserId reference
 
         [Column(TypeName = "VARCHAR(30)")]
