@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="AlarmLogViewerAPI/AlertViewerAPI.csproj" />
+  <Project Path="AlarmLogViewerApiGateway/AlarmLogViewerApiGateway.csproj" Id="2be2c564-9995-4a19-b881-e5ec2aa3237b" />
   <Project Path="AlertsLibrary/AlertsLibrary.csproj" />
   <Project Path="AuthenticationWebApi/AuthenticationWebApi.csproj" Id="eae46490-8664-444e-9a74-154c7c8b96e3" />
   <Project Path="RoomsLibrary/RoomsLibrary.csproj" />

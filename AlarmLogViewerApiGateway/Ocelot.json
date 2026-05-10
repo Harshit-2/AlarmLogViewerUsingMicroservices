@@ -1,0 +1,63 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/User/{something}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5025
+        }
+      ],
+      "UpstreamPathTemplate": "/userSvc/{something}"
+    },
+    {
+      "DownstreamPathTemplate": "/api/Rooms/{something}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5286
+        }
+      ],
+      "UpstreamPathTemplate": "/roomSvc/{something}"
+    },
+    {
+      "DownstreamPathTemplate": "/api/Temperature/{something}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5155
+        }
+      ],
+      "UpstreamPathTemplate": "/temperatureSvc/{something}"
+    },
+    {
+      "DownstreamPathTemplate": "/api/Alert/{something}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5179
+        }
+      ],
+      "UpstreamPathTemplate": "/alertSvc/{something}"
+    },
+    {
+      "DownstreamPathTemplate": "/api/Auth/{something}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5228
+        }
+      ],
+      "UpstreamPathTemplate": "/authSvc/{something}"
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:5010"
+  }
+}
+ 
