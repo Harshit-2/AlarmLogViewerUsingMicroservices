@@ -67,7 +67,7 @@ namespace UserViewerAPI.Controllers
             {
                 await userRepo.AddAsync(user);
 
-                HttpClient roomHttp = new HttpClient() { BaseAddress = new Uri("http://localhost:5286/api/Rooms/") };
+                HttpClient roomHttp = new HttpClient() { BaseAddress = new Uri("http://localhost:5286/api/Room/") };
                 await roomHttp.PostAsJsonAsync("User", new { UserId = user.UserId });
 
                 return Created($"api/user/{user.UserId}", user);
