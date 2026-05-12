@@ -11,7 +11,7 @@ using UserLibrary.Models;
 namespace UserLibrary.Migrations
 {
     [DbContext(typeof(UserDbContext))]
-    [Migration("20260511152846_InitialMigration")]
+    [Migration("20260512033328_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
